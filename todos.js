@@ -1,0 +1,1 @@
+[{"item":"Kutyát sétáltatni","status":true},{"item":"Tejet venni","status":false},{"item":"Megcsinálni a leckét","status":false},{"item":"Mosogatás","status":false}]

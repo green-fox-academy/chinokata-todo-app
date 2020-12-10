@@ -1,13 +1,1 @@
- [{
-         "item": "Kutyát sétáltatni",
-         "status": true
-     },
-     {
-         "item": "Tejet venni",
-         "status": false
-     }, {
-         "item": "Megcsinálni a leckét",
-         "status": false
-     }
-
- ]
+[{"item":"Megsétáltatni a kutyát","status":false},{"item":"Megetetni a papagájt","status":false},{"item":"Bevásárolni","status":false}]

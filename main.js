@@ -44,9 +44,24 @@ class Todo {
 
 if (typeof args.a === "string") {
     addItem();
+} else if (args.a == true) {
+    console.log('Nem lehetséges új feladat hozzzáadása, nincs megadva feladat.')
 }
 
 function addItem() {
-    myTodoObject.push(new Todo(args.a))
+    myTodoObject.push(new Todo(args.a));
+    let toSync = JSON.stringify(myTodoObject);
+    fs.writeFileSync('./todos.json', toSync, 'utf-8')
 }
-console.log(myTodoObject)
+
+function removeItem() {
+    myTodoObject.splice(args.r - 1, 1);
+    let toSync = JSON.stringify(myTodoObject);
+    fs.writeFileSync('./todos.json', toSync, 'utf-8')
+}
+
+if (typeof args.r === "number") {
+    removeItem();
+} else if (args.r === true) {
+    console.log('Nem lehetséges az eltávolítás, nem adott meg indexet')
+}
