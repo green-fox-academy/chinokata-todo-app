@@ -10,6 +10,7 @@ function printUserManual() {
 if (Object.keys(args).length === 1) {
     printUserManual();
 } else if (args._.length > 2 || !Object.keys(args).every(arg => ['_', 'l', 'a', 'r', 'c'].includes(arg))) {
+    console.log('Nem támogatott argumentum');
     printUserManual();
 }
 
@@ -51,17 +52,21 @@ if (typeof args.a === "string") {
 function addItem() {
     myTodoObject.push(new Todo(args.a));
     let toSync = JSON.stringify(myTodoObject);
-    fs.writeFileSync('./todos.json', toSync, 'utf-8')
+    fs.writeFileSync('./todos.json', toSync, 'utf-8');
 }
 
 function removeItem() {
     myTodoObject.splice(args.r - 1, 1);
     let toSync = JSON.stringify(myTodoObject);
-    fs.writeFileSync('./todos.json', toSync, 'utf-8')
+    fs.writeFileSync('./todos.json', toSync, 'utf-8');
 }
 
-if (typeof args.r === "number") {
+if (typeof args.r === "number" && args.r <= myTodoObject.length) {
     removeItem();
+} else if (args.r > myTodoObject.length) {
+    console.log('Nem lehetséges az eltávolítás. Túlindexelési probléma adódott');
 } else if (args.r === true) {
-    console.log('Nem lehetséges az eltávolítás, nem adott meg indexet')
+    console.log('Nem lehetséges az eltávolítás, nem adott meg indexet');
+} else if (typeof args.r === "string") {
+    console.log('Nem  lehetséges az eltávolítás, a megadott index nem szám.')
 }
