@@ -17,11 +17,15 @@ let myTodo = fs.readFileSync('./todos.json', 'utf-8');
 let myTodoObject = JSON.parse(myTodo);
 
 function listItems() {
-    for (let i = 0; i < myTodoObject.length; i++) {
-        if (myTodoObject[i].status === true) {
-            console.log(myTodoObject[i].item + ' ✓')
-        } else {
-            console.log(myTodoObject[i].item + ' X')
+    if (myTodoObject.length === 0) {
+        console.log('Nincs mára tennivalód :)')
+    } else {
+        for (let i = 0; i < myTodoObject.length; i++) {
+            if (myTodoObject[i].status === true) {
+                console.log(i + 1 + ' - ' + myTodoObject[i].item + ' ✓')
+            } else {
+                console.log(i + 1 + ' - ' + myTodoObject[i].item + ' X')
+            }
         }
     }
 }
@@ -29,3 +33,20 @@ function listItems() {
 if (args.l === true) {
     listItems();
 }
+
+class Todo {
+    item;
+    status = false;
+    constructor(item) {
+        this.item = item;
+    }
+}
+
+if (typeof args.a === "string") {
+    addItem();
+}
+
+function addItem() {
+    myTodoObject.push(new Todo(args.a))
+}
+console.log(myTodoObject)

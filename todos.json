@@ -1,10 +1,12 @@
  [{
-         "item": "Kutyasétáltatás",
-         "status": false
-
+         "item": "Kutyát sétáltatni",
+         "status": true
      },
      {
-         "item": "Macskasétáltatás",
+         "item": "Tejet venni",
+         "status": false
+     }, {
+         "item": "Megcsinálni a leckét",
          "status": false
      }
 
