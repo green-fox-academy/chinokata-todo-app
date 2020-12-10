@@ -1,5 +1,6 @@
 import minimist from 'minimist';
-import fs from 'fs';
+import fs, { readFileSync } from 'fs';
+
 
 
 
@@ -17,26 +18,64 @@ console.log(args)
 
 //TODO
 
+if (Object.keys(args).length === 1) {
+    printUserManual();
+} else if (args._.length > 2 || !Object.keys(args).every(arg => ['', 'l', 'a', 'r', 'c'].includes(arg))) {
+    printUserManual();
+}
+
+function printUserManual() {
+    let userManual = 'Parancssori Todo applikáció \n === === === === === === === === === == \n \n Parancssori argumentumok: \n -l: Kilistázza a feladatokat \n -a: Új feladatokat ad hozzá \n -r: Eltávolít egy feladatot \n -c: Teljesít egy feladatot'
+    console.log(userManual);
+}
 
 
-// $ todo
+function getTodoItem() {
+    let myTodo = fs.readFileSync('./todos.json', 'utf-8');
+    // let myTodoObject = JSON.parse(myTodo);
+    return myTodo;
+}
 
-// Parancssori Todo applikáció
-//     === === === === === === === === ==
+if (args.l === true) {
+    listItems();
+}
 
-//     Parancssori argumentumok:
-//     -l Kilistázza a feladatokat -
-//     a Új feladatot ad hozzá -
-//     r Eltávolít egy feladatot -
-//     c Teljesít egy feladatot
-
-
-console.log('Parancssori Todo applikáció \n === === === === === === === === === == \n \n Parancssori argumentumok: \n -l: Kilistázza a feladatokat \n -a: Új felafatokat ad hozzá \n -r: Eltávolít egy feladatot \n -c: Teljesít egy feladatot');
+function listItems() {
+    for (console.log(getTodoItem())
+    }
 
 
+    class Todo {
+        item;
+        status = false;
+        constructor(item) {
+            this.item = item;
+        }
+    }
 
-// let text = fs.readFileSync('./todo.txt');
-// fs.readFile('/todo.txt', (data) => {
-//     console.log(data);
-// });
-// console.log(text);
+    class List {
+        list = [];
+    }
+
+    let myTodoItems = new Todo("Kutyasétáltatás");
+    console.log(typeof myTodoItems)
+
+    let myList = new List();
+    myList = [
+        new Todo("Kutyasétáltalás"),
+        new Todo("Macskasímogatás"),
+        new Todo("Bevásárlás")
+    ]
+
+    console.log(typeof myList)
+        // console.log(myNewTodo)
+
+    // let stringTodo = JSON.stringify(myList)
+    // fs.writeFile('todo.json', stringTodo, (err) => {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     console.log("JSON data is saved.");
+    // });
+
+    // console.log(stringTodo);
